@@ -1,0 +1,91 @@
+swagger: "2.0"
+info:
+  description: Swagger file description of Interview Calendar API
+  version: "1.0.0"
+  title: Interview Calendar API
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /interviewers:
+    get:
+      operationId: "endpoints.interviewers.all"
+      tags:
+        - "Interviewers"
+      summary: "The interviewer data structure supported by the server application"
+      description: "Read the list of interviewers"
+      responses:
+        200:
+          description: "Successful read interviewers list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                first_name:
+                  type: "string"
+                last_name:
+                  type: "string"
+                date_created:
+                  type: "string"
+                date_updated:
+                  type: "string"
+
+    post:
+      operationId: "endpoints.interviewers.create"
+      tags:
+      - "interviewers"
+      summary: "Insert a new row into the interviewers table"
+      description: "Create a new interviewer"
+      parameters:
+        - name: "interviewer"
+          in: "body"
+          description: "Interviewer to create"
+          required: True
+          schema:
+            type: "object"
+            properties:
+              first_name:
+                type: "string"
+                description: "First name of interviewer to be created"
+              last_name:
+                type: "string"
+                description: "Last name of interviewer to be created"
+      responses:
+        201:
+          description: "Successful created new interviewer"
+
+  /interviewers/{obj_id}:
+    get:
+      operationId: "endpoints.interviewers.get"
+      tags:
+      - ""
+      summary: "Retrieve interviewer record"
+      description: "Retrieve an interviewer record matching obj_id"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        description: "Id of interview record"
+        type: "integer"
+        required: True
+      responses:
+        200:
+          description: "Successfully retrieved matching interviewer record"
+          schema:
+            properties:
+              first_name:
+                type: "string"
+              last_name:
+                type: "string"
+              availability:
+                type: "object"
+              date_created:
+                type: "string"
+              date_updated:
+                type: "string"
+
+

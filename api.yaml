@@ -16,7 +16,7 @@ paths:
     get:
       operationId: "endpoints.interviewers.all"
       tags:
-        - "Interviewers"
+        - "interviewers"
       summary: "The interviewer data structure supported by the server application"
       description: "Read the list of interviewers"
       responses:
@@ -63,7 +63,7 @@ paths:
     get:
       operationId: "endpoints.interviewers.get"
       tags:
-      - ""
+      - "interviewers"
       summary: "Retrieve interviewer record"
       description: "Retrieve an interviewer record matching obj_id"
       parameters:
@@ -88,4 +88,281 @@ paths:
               date_updated:
                 type: "string"
 
+    put:
+      operationId: "endpoints.interviewers.update"
+      tags:
+      - "interviewers"
+      summary: "Update interviewer record"
+      description: "Update an interviewer record matching obj_id"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        description: "Id of interview record"
+        type: "integer"
+        required: True
+      - name: "interviewer"
+        in: "body"
+        schema:
+          type: "object"
+          properties:
+            first_name:
+              type: "string"
+            last_name:
+              type: "string"
 
+      responses:
+        200:
+          description: "Successfully updated interviewer record"
+
+    delete:
+      operationId: "endpoints.interviewers.delete"
+      tags:
+      - "interviewers"
+      summary: "Delete interviewer record"
+      description: "Delete an interviewer record"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        type: "string"
+        required: True
+      responses:
+        200:
+          description: "Successfully deleted an interviewer record"
+
+  /candidates:
+    get:
+      operationId: "endpoints.candidates.all"
+      tags:
+      - "candidates"
+      summary: "The candidates data structure supported by the server application"
+      description: "Retrieve list of candidates"
+      responses:
+        200:
+          description: "Successful retrieve candidates list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                first_name:
+                  type: "string"
+                last_name:
+                  type: "string"
+                date_created:
+                  type: "string"
+                date_updated:
+                  type: "string"
+
+    post:
+      operationId: "endpoints.candidates.create"
+      tags:
+      - "candidates"
+      summary: "Insert a new row into the candidates table"
+      description: "Create a new candidate"
+      parameters:
+      - name: "candidate"
+        in: "body"
+        description: "Candidate to create"
+        required: True
+        schema:
+          type: "object"
+          properties:
+            first_name:
+              type: "string"
+              description: "First name of candidate to be created"
+            last_name:
+              type: "string"
+              description: "Last name of candidate to be created"
+      responses:
+        201:
+          description: "Successful created new candidate"
+
+  /candidates/{obj_id}:
+    get:
+      operationId: "endpoints.candidates.get"
+      tags:
+      - "candidates"
+      summary: "Retrieve candidate record"
+      description: "Retrieve an candidate record matching obj_id"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        description: "Id of candidate record"
+        type: "integer"
+        required: True
+      responses:
+        200:
+          description: "Successfully retrieved matching candidate record"
+          schema:
+            properties:
+              first_name:
+                type: "string"
+              last_name:
+                type: "string"
+              availability:
+                type: "object"
+              date_created:
+                type: "string"
+              date_updated:
+                type: "string"
+
+    put:
+      operationId: "endpoints.candidates.update"
+      tags:
+      - "candidates"
+      summary: "Update candidate record"
+      description: "Update an candidate record matching obj_id"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        description: "Id of candidate record"
+        type: "integer"
+        required: True
+      - name: "candidate"
+        in: "body"
+        schema:
+          type: "object"
+          properties:
+            first_name:
+              type: "string"
+            last_name:
+              type: "string"
+
+      responses:
+        200:
+          description: "Successfully updated candidate record"
+
+    delete:
+      operationId: "endpoints.candidates.delete"
+      tags:
+      - "candidates"
+      summary: "Delete candidate record"
+      description: "Delete an candidate record"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        type: "string"
+        required: True
+      responses:
+        200:
+          description: "Successfully deleted an candidate record"
+
+  /interviews:
+    get:
+      operationId: "endpoints.interviews.all"
+      tags:
+      - "interviews"
+      summary: "The interviews data structure supported by the server application"
+      description: "Retrieve list of interviews"
+      responses:
+        200:
+          description: "Successful retrieve interviews list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                candidate:
+                  type: "object"
+                interview:
+                  type: "object"
+                calendar_date:
+                  type: "object"
+                date_created:
+                  type: "string"
+                date_updated:
+                  type: "string"
+
+    post:
+      operationId: "endpoints.interviews.create"
+      tags:
+      - "interviews"
+      summary: "Insert a new row into the interviews table"
+      description: "Create a new interview"
+      parameters:
+      - name: "interview"
+        in: "body"
+        description: "Interview to create"
+        required: True
+        schema:
+          type: "object"
+          properties:
+            interviewer_email:
+              type: "string"
+              description: "Interviewer email of interview to be created"
+            candidate_email:
+              type: "string"
+              description: "Candidate email of interview to be created"
+            scheduled_date:
+              type: "string"
+      responses:
+        201:
+          description: "Successful created new interview"
+
+  /interviews/{obj_id}:
+    get:
+      operationId: "endpoints.interviews.get"
+      tags:
+      - "interviews"
+      summary: "Retrieve interview record"
+      description: "Retrieve an interview record matching obj_id"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        description: "Id of interview record"
+        type: "integer"
+        required: True
+      responses:
+        200:
+          description: "Successfully retrieved matching candidate record"
+          schema:
+            properties:
+              candidate:
+                type: "object"
+              interview:
+                type: "object"
+              calendar_date:
+                type: "object"
+              date_created:
+                type: "string"
+              date_updated:
+                type: "string"
+
+    put:
+      operationId: "endpoints.interviews.update"
+      tags:
+      - "interviews"
+      summary: "Update interview record"
+      description: "Update an candidate record matching obj_id"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        description: "Id of interview record"
+        type: "integer"
+        required: True
+      - name: "candidate"
+        in: "body"
+        schema:
+          type: "object"
+          properties:
+            first_name:
+              type: "string"
+            last_name:
+              type: "string"
+
+      responses:
+        200:
+          description: "Successfully updated candidate record"
+
+    delete:
+      operationId: "endpoints.candidates.delete"
+      tags:
+      - "candidates"
+      summary: "Delete candidate record"
+      description: "Delete an candidate record"
+      parameters:
+      - name: "obj_id"
+        in: "path"
+        type: "string"
+        required: True
+      responses:
+        200:
+          description: "Successfully deleted an candidate record"

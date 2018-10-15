@@ -23,11 +23,20 @@ visit http://localhost:5000 to view application
 ## Developing
 
 Here's a brief intro about what a developer must do in order to start developing
-the project further:
+the project further on a Linux machine:
+
+To setup the application, you need to have the following installed
+ - python ( preferably python3 )
+ - virtualenv ( to setup virtual environment )
+ - postgresql ( database )
 
 ```shell
 git clone https://github.com/stikks/Interview_Calendar.git
 cd Interview_Calendar
+
+# create a virtual environment
+virtualenv venv
+. venv/bin/activate
 pip install -r requirements.txt
 
 ## setting up database connection

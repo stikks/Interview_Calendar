@@ -6,7 +6,7 @@ Click==7.0
 clickclick==1.2.2
 connexion==1.5.3
 Flask==1.0.2
-Flask-Cors==3.0.6
+Flask-Cors==3.0.9
 Flask-Migrate==2.2.1
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2

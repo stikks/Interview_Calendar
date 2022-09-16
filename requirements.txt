@@ -17,7 +17,7 @@ itsdangerous==0.24
 Jinja2>=2.10.1
 jsonschema==2.6.0
 macholib==1.11
-Mako==1.0.7
+Mako==1.2.2
 MarkupSafe==1.0
 pefile==2018.8.8
 psycopg2==2.7.5
